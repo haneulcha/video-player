@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import VideoPlayer from "./components/VideoPlayer";
 import Control from "./components/Control";
+import VideoContextProvider from "./store/useVideoStore";
 
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -9,8 +10,10 @@ function App() {
   }, [videoRef]);
   return (
     <div className="App">
-      <VideoPlayer ref={videoRef} />
-      <Control videoEl={videoRef} />
+      <VideoContextProvider>
+        <VideoPlayer ref={videoRef} />
+        <Control videoEl={videoRef} />
+      </VideoContextProvider>
     </div>
   );
 }
